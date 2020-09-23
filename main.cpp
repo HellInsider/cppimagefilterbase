@@ -11,48 +11,40 @@ int main( int argc, char *argv[] )
     // toolkit filter_name base_pic_name sudent_tool student_pic_name limitPix limitMSE
     // toolkit near test images!
 
+
+
+	//printf("args[1...3] = %s\n %s\n %s\n", argv[1], argv[2], argv[3]);
+
+	if (argc != 4)
+	{
+		printf("Err: Not enought args\n");
+		return 0;
+	}
+
+	
 	png_toolkit studTool;
 
-	printf("args[1...3] = %s\n %s\n %s\n", argv[1], argv[2], argv[3]);
-
-    try
-    {
-        if (argc != 4)
-            throw "Not enough arguments ";
-        studTool.load(argv[2]);
-		//studTool.load("Darya.jpg");
-
-    }
-    catch (const char *str)
-    {
-        std::cout << "Error: " << str << std::endl;
-        return 1;
-    }
-
-	FILE *config;
-	try
+	if (!studTool.load(argv[2]))
 	{
-		config = fopen(argv[1], "r");
-		//config = fopen("Config.txt", "r");
-	}
-	catch (const char *str)
-	{
-		std::cout << "Error: " << str << std::endl;
-		return 1;
+		printf("Err: Not found pic\n");
+		return 0;
 	}
 
-	std::string filter_name;
+	FILE *config;	
+	char filter_name[32];
 	int U, D, L, R;
-
+	
+	config = fopen(argv[1], "r");
+	   
 	fscanf(config, "%s", filter_name);
 	fscanf(config, "%i %i %i %i ", &U, &L, &D, &R);
-
-
+	
 	if (config != NULL) fclose(config);
 
-	Filter *MyFilter;
 
+	Filter *MyFilter;
 	MyFilter = new FilterRed(U, L, D, R, &studTool);
+
 //	MyFilter = new FilterWhiteBlack(U, L, D, R, &studTool);
 
 
@@ -69,7 +61,7 @@ int main( int argc, char *argv[] )
 	studTool.save(argv[3]);
 	//studTool.save("Darya.jpg");
 	
-
+	delete MyFilter;
 	printf("Complete!\n");
     return 0;
 }
