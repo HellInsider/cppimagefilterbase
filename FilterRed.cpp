@@ -2,22 +2,19 @@
 #include "FilterRed.h"
 #include "png_toolkit.h"
 
-void FilterRed :: MakeAction()
+void FilterRed :: MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTool)
 {
-	
-	int i, j;
-	
-	i = (U == 0) ? 0 : Image.h / U;
+	InputDataProcess(Ut, Lt, Dt, Rt, studTool);
 
-	for (; i < Image.h / D; i++)
+	int i, j;
+
+	for (i = U; i < D; i++)
 	{
-		j = (L == 0) ? 0 : Image.w / L;
-		for (; j < Image.w / R; j+=1)
+		for (j = L; j < R; j += 1)
 		{
 			Image.pixels[(i*Image.w + j) * Image.compPerPixel] = 0xFF;
 			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] = 0x00;
 			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2] = 0x00;
 		}
 	}
-
 }

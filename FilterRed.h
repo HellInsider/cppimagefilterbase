@@ -6,7 +6,7 @@ class FilterRed: public Filter
 {
 	//FilterRed() {};
 public:
-	FilterRed(int U, int L, int D, int R, png_toolkit* studTool) :Filter(U, L,  D, R,  studTool) {};
-	virtual void MakeAction();
+	FilterRed() {};
+	virtual void MakeAction(int U, int L, int D, int R, png_toolkit* studTool);
 	~FilterRed() {};
 };
