@@ -60,6 +60,6 @@ int main( int argc, char *argv[] )
 	
 	delete MyFilter;
 	printf("Complete!\n");
-	getchar();
+
     return 0;
 }
