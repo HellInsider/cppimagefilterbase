@@ -12,9 +12,7 @@ void FilterRed :: MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTo
 	{
 		for (j = L; j < R; j += 1)
 		{
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel] = 0xFF;
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] = 0x00;
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2] = 0x00;
+			SetPixel(Image, j, i, 0xFF, 0, 0);
 		}
 	}
 }

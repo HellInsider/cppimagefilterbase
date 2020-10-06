@@ -20,35 +20,26 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 		for (int j = L; j < R; j += 1)
 		{
 			cur_pos = 0;
-			for (int y = i - 2; y < i + 2; y++)
+			for (int y = i - 2; y <= i + 2; y++)
 			{
-				for (int x = j - 2; x < j + 2; x++)
+				for (int x = j - 2; x <= j + 2; x++)
 				{
 					if (PixelExist(x, y))
 					{
-						intense = Copy.pixels[(y*Image.w + x) * Copy.compPerPixel] * 3 +
-							Copy.pixels[(y*Image.w + x) * Copy.compPerPixel + 1] * 6 +
-							Copy.pixels[(y*Image.w + x) * Copy.compPerPixel + 2];
-
-						intense /= 10;
-
+						intense = GetPixelIntense(Copy, x, y);
+						
 						Mass[cur_pos] = intense;
 						cur_pos++;
 					}
 
 				}
 			}
-			cur_pos++;
 
 			Sort(Mass, cur_pos);
 
-			if((Image.pixels[(i*Image.w + j) * Image.compPerPixel] * 3 +
-				Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] * 6 +
-				Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2]) / 10 < Mass[(cur_pos / 2)])
+			if(GetPixelIntense(Copy, j, i) <= Mass[(cur_pos )/ 2])
 			{
-				Image.pixels[(i*Image.w + j) * Image.compPerPixel] = 0;
-					Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] = 0;
-					Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2] = 0;
+				SetPixel(Image, j, i, 0, 0, 0);
 			}
 						
 		}

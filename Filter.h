@@ -22,6 +22,9 @@ public:
 	bool PixelExist(int x, int y);
 	void ImageCopy(image_data* from, image_data* to);
 
+	int GetPixelIntense(image_data Data, int x, int y);
+	void SetPixel(image_data Data, int x, int y, int r, int g, int b);
+
 
 	int U, D, L, R;
 	png_toolkit* studTool;

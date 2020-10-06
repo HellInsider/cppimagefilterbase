@@ -15,9 +15,7 @@ void FilterBlackWhite::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* s
 				Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] * 0.6 +
 				Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2] * 0.1;
 
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel] = (unsigned char)(x);
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 1] = (unsigned char)(x);
-			Image.pixels[(i*Image.w + j) * Image.compPerPixel + 2] = (unsigned char)(x);
+			SetPixel(Image, j, i, x, x, x);
 		}
 	}
 }

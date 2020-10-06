@@ -7,7 +7,6 @@
 #include "png_toolkit.h"
 #pragma warning(disable: 4996)
 
-//"C:\Users\danii\Desktop\ignatiev\C++\Labs and homework\Filter\Filters\Debug\Config.txt" "C:\Users\danii\Desktop\ignatiev\C++\Labs and homework\Filter\Filters\Debug\Minecraft.jpg" "C:\Users\danii\Desktop\ignatiev\C++\Labs and homework\Filter\Filters\Debug\Result1.jpg" 
 
 int main( int argc, char *argv[] )
 {
@@ -53,7 +52,6 @@ int main( int argc, char *argv[] )
 		return 0;
 	}
 	
-
 	MyFilter->MakeAction(U, L, D, R, &studTool);
 
 	studTool.save(argv[3]);
