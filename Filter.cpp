@@ -2,7 +2,8 @@
 
 bool Filter::PixelExist(int x, int y)
 {
-	if (x >= 0 && x < Image.w && y>=0 && y < Image.h)
+	//if (x >= 0 && x < Image.w && y>=0 && y < Image.h)
+	if (x >= L && x < R && y >= U && y < D)
 		return true;
 
 	return false;
@@ -29,11 +30,9 @@ void Filter::ImageCopy(image_data* from, image_data* to)
 
 	for(int i=0;i<to->h;i++)
 		for (int j = 0; j < to->w; j++)
-		{
-			to->pixels[to->compPerPixel*(to->w*i + j)] = from->pixels[from->compPerPixel*(from->w*i + j)];
-			to->pixels[to->compPerPixel*(to->w*i + j)+1] = from->pixels[from->compPerPixel*(from->w*i + j)+1];
-			to->pixels[to->compPerPixel*(to->w*i + j)+2] = from->pixels[from->compPerPixel*(from->w*i + j)+2];
-		}
+			for(int byte = 0; byte<to->compPerPixel; byte++)
+				to->pixels[to->compPerPixel*(to->w*i + j) + byte] = from->pixels[from->compPerPixel*(from->w*i + j) + byte];
+		
 }
 
 int Filter::GetPixelIntense(image_data Data, int x, int y)

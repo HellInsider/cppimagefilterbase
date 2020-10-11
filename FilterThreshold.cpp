@@ -1,5 +1,5 @@
 #include "FilterThreshold.h"
-#include <iostream>
+//#include <iostream>
 
 
 void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTool)
@@ -18,7 +18,7 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 
 	for (int i = U; i < D; i++)
 	{
-		for (int j = L; j < R; j += 1)
+		for (int j = L; j < R; j++)
 		{
 			cur_pos = 0;
 			for (int y = i - 2; y <= i + 2; y++)
@@ -36,16 +36,7 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 				}
 			}
 
-			Sort(Mass, cur_pos);
-
-			
-			//for (int temp = 0; temp < cur_pos; temp++)
-			//{
-			//	std::cout << Mass[temp] << " ";
-			//}
-
-			//std::cout << std::endl;
-			
+			Sort(Mass, cur_pos);		
 
 			if(GetPixelIntense(Copy, j, i) < Mass[(cur_pos )/ 2])
 			{
@@ -54,7 +45,6 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 						
 		}
 	}
-
 }
 
 void FilterThreshold::Sort(int* Mass, int len)
