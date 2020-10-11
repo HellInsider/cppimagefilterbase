@@ -42,7 +42,7 @@ int Filter::GetPixelIntense(image_data Data, int x, int y)
 		Data.pixels[(y*Image.w + x) * Data.compPerPixel + 1] * 6 +
 		Data.pixels[(y*Image.w + x) * Data.compPerPixel + 2];
 
-	return intense / 10;
+	return ( intense / 10 );
 }
 
 void Filter::SetPixel(image_data Data, int x, int y, int r, int g, int b)
