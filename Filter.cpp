@@ -53,7 +53,7 @@ void Filter::GetPixeRGB(image_data Data, int x, int y, int* R, int* G, int* B )
 
 void Filter::SetPixel(image_data Data, int x, int y, int r, int g, int b)
 {
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel] = r;
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 1] = g;
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 2] = b;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel] = (unsigned char)r;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 1] = (unsigned char)g;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 2] = (unsigned char)b;
 }
