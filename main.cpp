@@ -4,6 +4,8 @@
 #include "FilterRed.h"
 #include "FilterBlackWhite.h"
 #include "FilterThreshold.h"
+#include "FilterBlur.h"
+#include "FilterEdge.h"
 #include "png_toolkit.h"
 #pragma warning(disable: 4996)
 
@@ -43,6 +45,8 @@ int main( int argc, char *argv[] )
 	case Red: { MyFilter = new FilterRed(); break; }
 	case BlackWhite: { MyFilter = new FilterBlackWhite(); break; }
 	case Threshold: { MyFilter = new FilterThreshold(); break; }
+	case Blur: { MyFilter = new FilterBlur(); break; }
+	case Edge: { MyFilter = new FilterEdge(); break; }
 	default: { }
 	}
 

@@ -44,6 +44,13 @@ int Filter::GetPixelIntense(image_data Data, int x, int y)
 	return ( intense / 10 );
 }
 
+void Filter::GetPixeRGB(image_data Data, int x, int y, int* R, int* G, int* B )
+{
+	*R = Data.pixels[(y*Image.w + x) * Data.compPerPixel];
+	*G = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 1];
+	*B = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 2];
+}
+
 void Filter::SetPixel(image_data Data, int x, int y, int r, int g, int b)
 {
 	Data.pixels[(y*Data.w + x) * Data.compPerPixel] = r;

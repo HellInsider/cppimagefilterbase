@@ -15,7 +15,7 @@ class Filter
 public:
 	Filter() {};
 	
-	virtual void MakeAction(int U, int L, int D, int R, png_toolkit* studTool) = 0;
+	virtual void MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTool) = 0;
 	~Filter() {};
 
 	void InputDataProcess(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTool);
@@ -24,6 +24,7 @@ public:
 
 	int GetPixelIntense(image_data Data, int x, int y);
 	void SetPixel(image_data Data, int x, int y, int r, int g, int b);
+	void GetPixeRGB(image_data Data, int x, int y, int* R, int* G, int* B);
 
 
 	int U, D, L, R;
