@@ -32,13 +32,12 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 						Mass[cur_pos] = intense;
 						cur_pos++;
 					}
-
 				}
 			}
 
 			Sort(Mass, cur_pos);		
 
-			if(GetPixelIntense(Copy, j, i) < Mass[(cur_pos )/ 2])
+			if(GetPixelIntense(Copy, j, i) < Mass[(cur_pos)/ 2])
 			{
 				SetPixel(Image, j, i, 0, 0, 0);
 			}

@@ -9,7 +9,7 @@ void FilterBlackWhite::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* s
 
 	for (i = U; i < D; i++)
 	{
-		for (j = L; j < R; j ++)
+		for (j = L; j < R; j++)
 		{
 			x =  GetPixelIntense(Image, j, i);
 			SetPixel(Image, j, i, x, x, x);

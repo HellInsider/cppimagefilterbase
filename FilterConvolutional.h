@@ -15,6 +15,4 @@ public:
 
 	void KernelProcess(image_data* Copy, image_data* Image, int i, int j);
 
-	
-
 };

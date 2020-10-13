@@ -26,7 +26,7 @@ void FilterEdge::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studToo
 		{
 			KernelProcess(&Copy, &Image, j, i);			
 		}
-		//printf("%i\n", i);
+		//printf("%f\n", (float)(i) / (D - U));
 	}
 }
 
