@@ -3,7 +3,7 @@
 void FilterConvolutional::KernelProcess(image_data* Copy, image_data* Image, int j, int i)
 {
 	int CernSumR = 0, CernSumG = 0, CernSumB = 0, KernelMassSum = 0;
-	int R, G, B;
+	Pixel_t* pixel = new Pixel_t;
 	int FLy = i - KernelSize / 2, FLx = j - KernelSize / 2;
 	int KernelVal;
 
@@ -13,13 +13,13 @@ void FilterConvolutional::KernelProcess(image_data* Copy, image_data* Image, int
 		{
 			if (PixelExist(FLx + x, FLy + y))
 			{
-				GetPixeRGB(*Copy, FLx + x, FLy + y, &R, &G, &B);
+				GetPixeRGB(*Copy, FLx + x, FLy + y, pixel);
 
 				KernelVal = Kernel[y][x];
 
-				CernSumR += KernelVal * R;
-				CernSumG += KernelVal * G;
-				CernSumB += KernelVal * B;
+				CernSumR += KernelVal * pixel->R;
+				CernSumG += KernelVal * pixel->G;
+				CernSumB += KernelVal * pixel->B;
 
 				KernelMassSum += KernelVal;
 			}
@@ -41,8 +41,12 @@ void FilterConvolutional::KernelProcess(image_data* Copy, image_data* Image, int
 	if (CernSumG < 0) CernSumG = 0;
 
 	if (CernSumB > 255) CernSumB = 255;
-	if (CernSumB < 0) CernSumB = 0;;
+	if (CernSumB < 0) CernSumB = 0;
+	
+	pixel->R = CernSumR;
+	pixel->G = CernSumG;
+	pixel->B = CernSumB;
 
-	SetPixel(*Image, j, i, CernSumR, CernSumG, CernSumB);
-
+	SetPixel(*Image, j, i, *pixel);
+	delete pixel;
 }

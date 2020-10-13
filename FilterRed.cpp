@@ -7,12 +7,13 @@ void FilterRed :: MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTo
 	InputDataProcess(Ut, Lt, Dt, Rt, studTool);
 
 	int i, j;
-
+	Pixel_t pixel_red = { 0xFF,0,0 };
+	
 	for (i = U; i < D; i++)
 	{
-		for (j = L; j < R; j += 1)
+		for (j = L; j < R; j++)
 		{
-			SetPixel(Image, j, i, 0xFF, 0, 0);
+			SetPixel(Image, j, i, pixel_red);
 		}
 	}
 }

@@ -44,16 +44,16 @@ int Filter::GetPixelIntense(image_data Data, int x, int y)
 	return ( intense / 10 );
 }
 
-void Filter::GetPixeRGB(image_data Data, int x, int y, int* R, int* G, int* B )
+void Filter::GetPixeRGB(image_data Data, int x, int y, Pixel_t* pixel)
 {
-	*R = Data.pixels[(y*Image.w + x) * Data.compPerPixel];
-	*G = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 1];
-	*B = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 2];
+	pixel->R = Data.pixels[(y*Image.w + x) * Data.compPerPixel];
+	pixel->G = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 1];
+	pixel->B = Data.pixels[(y*Image.w + x) * Data.compPerPixel + 2];
 }
 
-void Filter::SetPixel(image_data Data, int x, int y, int r, int g, int b)
+void Filter::SetPixel(image_data Data, int x, int y, Pixel_t pixel)
 {
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel] = (unsigned char)r;
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 1] = (unsigned char)g;
-	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 2] = (unsigned char)b;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel] = pixel.R;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 1] = pixel.G;
+	Data.pixels[(y*Data.w + x) * Data.compPerPixel + 2] = pixel.B;
 }

@@ -5,14 +5,16 @@ void FilterBlackWhite::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* s
 	InputDataProcess(Ut, Lt, Dt, Rt, studTool);
 
 	int i, j;
-	int x;
+	unsigned char x;
+	Pixel_t pixel;
 
 	for (i = U; i < D; i++)
 	{
 		for (j = L; j < R; j++)
 		{
-			x =  GetPixelIntense(Image, j, i);
-			SetPixel(Image, j, i, x, x, x);
+			x = (unsigned char)GetPixelIntense(Image, j, i);
+			pixel = { x,x,x };
+			SetPixel(Image, j, i, pixel);
 		}
 	}
 }

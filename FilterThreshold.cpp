@@ -14,6 +14,7 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 	ImageCopy(&Image, &Copy);
 
 	int intense, cur_pos;
+	Pixel_t pixel_zeros = { 0,0,0 };
 
 
 	for (int i = U; i < D; i++)
@@ -39,7 +40,7 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 
 			if(GetPixelIntense(Copy, j, i) < Mass[(cur_pos)/ 2])
 			{
-				SetPixel(Image, j, i, 0, 0, 0);
+				SetPixel(Image, j, i, pixel_zeros);
 			}
 						
 		}

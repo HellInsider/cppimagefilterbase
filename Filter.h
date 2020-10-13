@@ -1,5 +1,7 @@
 #pragma once
+#include "PixelRGB.h"
 #include "png_toolkit.h"
+
  
 enum FilterType
 {
@@ -23,8 +25,8 @@ public:
 	void ImageCopy(image_data* from, image_data* to);
 
 	int GetPixelIntense(image_data Data, int x, int y);
-	void SetPixel(image_data Data, int x, int y, int r, int g, int b);
-	void GetPixeRGB(image_data Data, int x, int y, int* R, int* G, int* B);
+	void SetPixel(image_data Data, int x, int y, Pixel_t pixel);
+	void GetPixeRGB(image_data Data, int x, int y, Pixel_t* pixel);
 
 
 	int U, D, L, R;
