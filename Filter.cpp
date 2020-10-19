@@ -15,10 +15,10 @@ void Filter::InputDataProcess(int Ut, int Lt, int Dt, int Rt, png_toolkit* tstud
 	Image = studTool->getPixelData();
 
 	U = (Ut == 0) ? 0 : Image.h / Ut;
-	D = Image.h / Dt;
+	D = (Dt == 0) ? 0 : Image.h / Dt;
 
 	L = (Lt == 0) ? 0 : Image.w / Lt;
-	R = Image.w / Rt;
+	R = (Rt == 0) ? 0 : Image.w / Rt;
 }
 
 void Filter::ImageCopy(image_data* from, image_data* to)

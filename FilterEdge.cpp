@@ -16,17 +16,26 @@ void FilterEdge::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studToo
 	FilterBW.MakeAction(Ut, Lt, Dt, Rt, studTool);
 
 	InputDataProcess(Ut, Lt, Dt, Rt, studTool);
-
-	image_data Copy;
-	ImageCopy(&Image, &Copy);
+	   
+	PixelMass = new Pixel_t[(D - U) * (R - L)];
 
 	for (int i = U; i < D; i++)
 	{
 		for (int j = L; j < R; j++)
 		{
-			KernelProcess(&Copy, &Image, j, i);			
+			PixelMass[i*(R - L) + j - L] = KernelProcess(&Image, j, i);
 		}
-		//printf("%f\n", (float)(i) / (D - U));
+
 	}
+
+	for (int i = U; i < D; i++)
+	{
+		for (int j = L; j < R; j++)
+		{
+			SetPixel(Image, j, i, PixelMass[i*(R-L) + j-L]);
+		}
+	}
+
+	delete [] PixelMass;
 }
 

@@ -1,6 +1,6 @@
 #include "FilterThreshold.h"
 //#include <iostream>
-
+#include <vector>
 
 void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* studTool)
 {
@@ -10,8 +10,10 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 
 	InputDataProcess(Ut, Lt, Dt, Rt, studTool);
 
-	image_data Copy;
-	ImageCopy(&Image, &Copy);
+	//image_data Copy;
+	//ImageCopy(&Image, &Copy);
+
+	std::vector<int> ChangeList;
 
 	int intense, cur_pos;
 	Pixel_t pixel_zeros = { 0,0,0 };
@@ -28,7 +30,7 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 				{
 					if (PixelExist(x, y))
 					{
-						intense = GetPixelIntense(Copy, x, y);
+						intense = GetPixelIntense(Image, x, y);
 						
 						Mass[cur_pos] = intense;
 						cur_pos++;
@@ -38,13 +40,26 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 
 			Sort(Mass, cur_pos);		
 
-			if(GetPixelIntense(Copy, j, i) < Mass[(cur_pos)/ 2])
+			if(GetPixelIntense(Image, j, i) < Mass[(cur_pos)/ 2])
 			{
-				SetPixel(Image, j, i, pixel_zeros);
+				ChangeList.push_back(i);
+				ChangeList.push_back(j);
 			}
 						
 		}
 	}
+
+	int i=0, j=0;
+
+	for (int t = 0; t < ChangeList.size(); t+=2 )
+	{
+		i = ChangeList[t];
+		j = ChangeList[t+1];
+		SetPixel(Image, j, i, pixel_zeros);
+	}
+
+
+
 }
 
 void FilterThreshold::Sort(int* Mass, int len)

@@ -6,13 +6,15 @@
 
 class FilterConvolutional : public Filter
 {
-
+	
 
 public:
 
 	int KernelSize;
 	std::vector<std::vector<int>> Kernel;
 
-	void KernelProcess(image_data* Copy, image_data* Image, int i, int j);
+	Pixel_t KernelProcess(image_data* Image, int i, int j);
+
+	Pixel_t *PixelMass;
 
 };
