@@ -5,4 +5,4 @@ add_executable(${PROJECT_NAME} "png_toolkit.h" "stb_image.h" "stb_image_write.h"
 "Cfg_Reader.h" "Cfg_Reader.cpp" "PixelRGB.h" "Filter.h" "Filter.cpp" 
 "FilterRed.h" "FilterRed.cpp" "FilterBlackWhite.h" "FilterBlackWhite.cpp" "FilterThreshold.h" 
 "FilterThreshold.cpp" "FilterConvolutional.h" "FilterConvolutional.cpp" "FilterEdge.h" "FilterEdge.cpp"
-"FilterBlur.h" "FilterBlur.cpp")
+"FilterBlur.h" "FilterBlur.cpp" "FilterExtazy.cpp" "FilterExtazy.h")
