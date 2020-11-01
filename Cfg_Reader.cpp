@@ -3,22 +3,28 @@
 #include <string>
 #include "Cfg_Reader.h"
 
-bool Cfg_Reader::Read(char* Cfg_path, int* U, int* L, int* D, int* R, FilterType *type)
+Cfg_Reader::Cfg_Reader(char* Cfg_path)
 {
-	std::ifstream stream(Cfg_path);
+	stream = new std::ifstream(Cfg_path);
+}
+
+Cfg_Reader::~Cfg_Reader()
+{
+	stream->close();
+}
+
+bool Cfg_Reader::Read( int* U, int* L, int* D, int* R, FilterType *type)
+{
+	
 	std::string temp_buf;
 	   	
-	if (!stream)
+	if (!*stream || stream->eof())
 	{
 		return false;
 	}
 
-	stream >> temp_buf;
-	stream >> *U >> *L >> *D >> *R;
-
-	stream.close();
-
-
+	*stream >> temp_buf;
+	*stream >> *U >> *L >> *D >> *R;
 
 	int i = 0;
 	for (; i < Filters_Num; i++)

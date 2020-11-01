@@ -9,7 +9,8 @@ enum FilterType
 	BlackWhite,
 	Threshold,
 	Blur,
-	Edge
+	Edge,
+	Extazy
 };
 
 class Filter

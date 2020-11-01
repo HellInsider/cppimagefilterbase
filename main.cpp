@@ -6,6 +6,7 @@
 #include "FilterThreshold.h"
 #include "FilterBlur.h"
 #include "FilterEdge.h"
+#include "FilterExtazy.h"
 #include "png_toolkit.h"
 #pragma warning(disable: 4996)
 
@@ -30,33 +31,31 @@ int main( int argc, char *argv[] )
 	FilterType Type;
 	int U, D, L, R;
 
-	Cfg_Reader Reader;
-
-	if (!Reader.Read(argv[1], &U, &L, &D, &R, &Type))
-	{
-		std::cout << "Err Reading." << std::endl;
-	}
-	
+	Cfg_Reader Reader(argv[1]);
 
 	Filter *MyFilter = NULL;
 
-	switch (Type)
+	while (Reader.Read(&U, &L, &D, &R, &Type))
 	{
-	case Red: { MyFilter = new FilterRed(); break; }
-	case BlackWhite: { MyFilter = new FilterBlackWhite(); break; }
-	case Threshold: { MyFilter = new FilterThreshold(); break; }
-	case Blur: { MyFilter = new FilterBlur(); break; }
-	case Edge: { MyFilter = new FilterEdge(); break; }
-	default: { }
-	}
+		switch (Type)
+		{
+		case Red: { MyFilter = new FilterRed(); break; }
+		case BlackWhite: { MyFilter = new FilterBlackWhite(); break; }
+		case Threshold: { MyFilter = new FilterThreshold(); break; }
+		case Blur: { MyFilter = new FilterBlur(); break; }
+		case Edge: { MyFilter = new FilterEdge(); break; }
+		case Extazy: { MyFilter = new FilterExtazy(); break; }
+		default: { }
+		}
 
-	if(MyFilter == NULL)
-	{
-		std::cout << "Unknown Filter." << std::endl;
-		return 0;
+		if (MyFilter == NULL)
+		{
+			std::cout << "Unknown Filter." << std::endl;
+			return 0;
+		}
+
+		MyFilter->MakeAction(U, L, D, R, &studTool);
 	}
-	
-	MyFilter->MakeAction(U, L, D, R, &studTool);
 
 	studTool.save(argv[3]);
 	

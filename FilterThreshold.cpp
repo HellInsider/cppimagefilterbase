@@ -57,9 +57,6 @@ void FilterThreshold::MakeAction(int Ut, int Lt, int Dt, int Rt, png_toolkit* st
 		j = ChangeList[t+1];
 		SetPixel(Image, j, i, pixel_zeros);
 	}
-
-
-
 }
 
 void FilterThreshold::Sort(int* Mass, int len)
